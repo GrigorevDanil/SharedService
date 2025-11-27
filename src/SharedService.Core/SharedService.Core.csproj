@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\SharedService.SharedKernel\SharedService.SharedKernel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
+    <PackageReference Include="Scrutor" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageId>SharedService.Core</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>GrigorevDanil</Authors>
+    <Company>GrigorevDanil</Company>
+    <PackageDescription>Core</PackageDescription>
+    <RepositoryUrl>https://github.com/GrigorevDanil/SharedService</RepositoryUrl>
+  </PropertyGroup>
+</Project>
