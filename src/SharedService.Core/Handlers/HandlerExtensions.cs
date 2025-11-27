@@ -5,7 +5,7 @@ namespace SharedService.Core.Handlers;
 
 public static class HandlerExtensions
 {
-    private static IServiceCollection AddHandlers(this IServiceCollection services, params Assembly[] assemblies)
+    public static IServiceCollection AddHandlers(this IServiceCollection services, params Assembly[] assemblies)
     {
         services.Scan(scan =>
             scan.FromAssemblies(assemblies)
