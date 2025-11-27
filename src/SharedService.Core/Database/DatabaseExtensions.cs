@@ -6,7 +6,7 @@ namespace SharedService.Core.Database;
 
 public static class DatabaseExtensions
 {
-    private static IServiceCollection AddDapperJson(this IServiceCollection services, params Assembly[] assemblies)
+    public static IServiceCollection AddDapperJson(this IServiceCollection services, params Assembly[] assemblies)
     {
         DefaultTypeMap.MatchNamesWithUnderscores = true;
 
