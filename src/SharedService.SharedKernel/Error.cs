@@ -75,6 +75,14 @@ public record Error
     public static Error Conflict(string message, string code = "VALUE_IS_CONFLICT") => new(code, message, ErrorType.CONFLICT);
 
     /// <summary>
+    /// Запрет доступа.
+    /// </summary>
+    /// <param name="message">Сообщение об ошибке.</param>
+    /// <param name="code">Код ошибки.</param>
+    /// <returns>Экземпляр <see cref="Error"/>.</returns>
+    public static Error Forbidden(string message, string code = "FORBIDDEN") => new(code, message, ErrorType.FORBIDDEN);
+
+    /// <summary>
     /// Преобразует ошибку в список ошибок <see cref="Errors"/>.
     /// </summary>
     /// <returns>Список ошибок <see cref="Errors"/>.</returns>
@@ -105,4 +113,9 @@ public enum ErrorType
     /// Ошибка конфликт
     /// </summary>
     CONFLICT,
+
+    /// <summary>
+    /// Ошибка запрета доступа
+    /// </summary>
+    FORBIDDEN,
 }
