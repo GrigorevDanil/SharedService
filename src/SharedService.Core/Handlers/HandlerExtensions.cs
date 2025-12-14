@@ -17,7 +17,11 @@ public static class HandlerExtensions
         services.Scan(scan =>
             scan.FromAssemblies(assemblies)
                 .AddClasses(classes =>
-                    classes.AssignableToAny(typeof(IQueryHandler<,>), typeof(IQueryHandler<>)))
+                    classes.AssignableToAny(
+                        typeof(IQueryHandler<,>),
+                        typeof(IQueryHandler<>),
+                        typeof(IQueryHandlerWithResult<,>),
+                        typeof(IQueryHandlerWithResult<>)))
                 .AsSelfWithInterfaces()
                 .WithScopedLifetime());
 

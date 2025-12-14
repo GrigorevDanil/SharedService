@@ -1,4 +1,38 @@
-﻿namespace SharedService.Core.Handlers;
+﻿using CSharpFunctionalExtensions;
+using SharedService.SharedKernel;
+
+namespace SharedService.Core.Handlers;
+
+/// <summary>
+/// Обработчик запроса с ответом.
+/// </summary>
+/// <typeparam name="TQuery">Запрос.</typeparam>
+/// <typeparam name="TResponse">Ответ.</typeparam>
+public interface IQueryHandlerWithResult<in TQuery, TResponse>
+    where TQuery : IQuery
+{
+    /// <summary>
+    /// Обработка запроса.
+    /// </summary>
+    /// <param name="query">Запрос.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Вернет ответ TResponse.</returns>
+    Task<Result<TResponse, Errors>> Handle(TQuery query, CancellationToken cancellationToken = default);
+}
+
+/// <summary>
+/// Обработчик запроса с ответом.
+/// </summary>
+/// <typeparam name="TResponse">Ответ.</typeparam>
+public interface IQueryHandlerWithResult<TResponse>
+{
+    /// <summary>
+    /// Обработка запроса.
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Вернет ответ TResponse.</returns>
+    Task<Result<TResponse, Errors>> Handle(CancellationToken cancellationToken = default);
+}
 
 /// <summary>
 /// Обработчик запроса с ответом.
