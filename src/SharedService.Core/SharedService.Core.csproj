@@ -5,16 +5,18 @@
   <ItemGroup>
     <PackageReference Include="Dapper" />
     <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
     <PackageReference Include="Scrutor" />
   </ItemGroup>
 
   <PropertyGroup>
     <PackageId>SharedService.Core</PackageId>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Authors>GrigorevDanil</Authors>
     <Company>GrigorevDanil</Company>
     <PackageDescription>Core</PackageDescription>
     <RepositoryUrl>https://github.com/GrigorevDanil/SharedService</RepositoryUrl>
+    <NullableReferenceTypes>false</NullableReferenceTypes>
   </PropertyGroup>
 </Project>
