@@ -11,19 +11,19 @@ public class ApiDescriptionOptions
     public string Title { get; set; } = "My API";
 
     /// <summary>
-    /// Версия API.
-    /// </summary>
-    public string Version { get; set; } = "v1";
-
-    /// <summary>
     /// Описание для сервиса.
     /// </summary>
-    public string Description { get; set; } = "Описание для сервиса.";
+    public string? Description { get; set; }
 
     /// <summary>
     /// Контактная информация.
     /// </summary>
-    public ApiContactOptions Contact { get; set; } = new ApiContactOptions();
+    public ApiContactOptions Contact { get; set; } = new();
+
+    /// <summary>
+    /// Описание ендпоинтов для Swagger.
+    /// </summary>
+    public ApiEndpointOptions[] Endpoints { get; set; } = [];
 }
 
 /// <summary>
@@ -34,15 +34,31 @@ public class ApiContactOptions
     /// <summary>
     /// Имя контактного лица или команды.
     /// </summary>
-    public string Name { get; set; } = "Support Team";
+    public string? Name { get; set; }
 
     /// <summary>
     /// Электронная почта.
     /// </summary>
-    public string Email { get; set; } = "support@example.com";
+    public string? Email { get; set; }
 
     /// <summary>
     /// URL контакта.
     /// </summary>
-    public string Url { get; set; } = "https://example.com";
+    public string? Url { get; set; }
+}
+
+/// <summary>
+/// Представляет контактную информацию для Swagger.
+/// </summary>
+public class ApiEndpointOptions
+{
+    /// <summary>
+    /// Версии API.
+    /// </summary>
+    public string Version { get; set; } = "1";
+
+    /// <summary>
+    /// Добавлять схему безопасности для Swagger документации.
+    /// </summary>
+    public bool Authorization { get; set; }
 }
