@@ -13,8 +13,10 @@ namespace SharedService.Framework.Swagger;
 /// </summary>
 public static class OpenApiExtensions
 {
-    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, IConfiguration configuration, Action<SwaggerUIOptions>? setupAction)
+    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, Action<SwaggerUIOptions>? setupAction = null)
     {
+        var configuration = app.ApplicationServices.GetRequiredService<IConfiguration>();
+
         ApiDescriptionOptions apiOptions = configuration.GetSection("Swagger").Get<ApiDescriptionOptions>() ?? new ApiDescriptionOptions();
 
         return app.UseSwaggerUI(options =>
