@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace SharedService.Framework.Swagger;
 
@@ -12,25 +13,20 @@ namespace SharedService.Framework.Swagger;
 /// </summary>
 public static class OpenApiExtensions
 {
-    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, IConfiguration configuration)
+    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, IConfiguration configuration, Action<SwaggerUIOptions>? setupAction)
     {
         ApiDescriptionOptions apiOptions = configuration.GetSection("Swagger").Get<ApiDescriptionOptions>() ?? new ApiDescriptionOptions();
 
         return app.UseSwaggerUI(options =>
         {
-            foreach (ApiEndpointOptions endpoint in apiOptions.Endpoints)
+            foreach (string version in apiOptions.Versions)
             {
                 options.SwaggerEndpoint(
-                    $"/openapi/v{endpoint.Version}.json",
-                    $"{apiOptions.Title} API v{endpoint.Version}");
-
-                if (endpoint.Authorization)
-                {
-                    options.SwaggerEndpoint(
-                        $"/openapi/v{endpoint.Version}_internal.json",
-                        $"{apiOptions.Title} internal API v{endpoint.Version}");
-                }
+                    $"/openapi/v{version}.json",
+                    $"{apiOptions.Title} API v{version}");
             }
+
+            setupAction?.Invoke(options);
         });
     }
 
@@ -46,24 +42,14 @@ public static class OpenApiExtensions
     {
         ApiDescriptionOptions apiOptions = configuration.GetSection("Swagger").Get<ApiDescriptionOptions>() ?? new ApiDescriptionOptions();
 
-        foreach (ApiEndpointOptions endpoint in apiOptions.Endpoints)
+        foreach (string version in apiOptions.Versions)
         {
-            string version = endpoint.Version;
-
             services.AddOpenApi("v" + version,  options =>
             {
                 options.AddOpenApiInfo(apiOptions, version);
+
+                options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
             });
-
-            if (endpoint.Authorization)
-            {
-                services.AddOpenApi("v" + version + "_internal",  options =>
-                {
-                    options.AddOpenApiInfo(apiOptions, version);
-
-                    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
-                });
-            }
         }
 
         return services;

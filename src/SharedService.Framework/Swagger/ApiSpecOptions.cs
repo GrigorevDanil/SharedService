@@ -21,9 +21,9 @@ public class ApiDescriptionOptions
     public ApiContactOptions Contact { get; set; } = new();
 
     /// <summary>
-    /// Описание ендпоинтов для Swagger.
+    /// Версии API.
     /// </summary>
-    public ApiEndpointOptions[] Endpoints { get; set; } = [];
+    public string[] Versions { get; set; } = ["1"];
 }
 
 /// <summary>
@@ -45,20 +45,4 @@ public class ApiContactOptions
     /// URL контакта.
     /// </summary>
     public string? Url { get; set; }
-}
-
-/// <summary>
-/// Представляет контактную информацию для Swagger.
-/// </summary>
-public class ApiEndpointOptions
-{
-    /// <summary>
-    /// Версии API.
-    /// </summary>
-    public string Version { get; set; } = "1";
-
-    /// <summary>
-    /// Добавлять схему безопасности для Swagger документации.
-    /// </summary>
-    public bool Authorization { get; set; }
 }

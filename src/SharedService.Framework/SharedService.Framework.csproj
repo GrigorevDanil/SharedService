@@ -28,7 +28,7 @@
 
   <PropertyGroup>
     <PackageId>SharedService.Framework</PackageId>
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
     <Authors>GrigorevDanil</Authors>
     <Company>GrigorevDanil</Company>
     <PackageDescription>Framework</PackageDescription>
