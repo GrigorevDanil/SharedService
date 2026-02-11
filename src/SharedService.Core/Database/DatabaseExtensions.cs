@@ -1,6 +1,7 @@
 using System.Reflection;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
+using SharedService.SharedKernel;
 
 namespace SharedService.Core.Database;
 

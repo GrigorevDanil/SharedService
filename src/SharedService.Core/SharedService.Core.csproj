@@ -12,7 +12,7 @@
 
   <PropertyGroup>
     <PackageId>SharedService.Core</PackageId>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>GrigorevDanil</Authors>
     <Company>GrigorevDanil</Company>
     <PackageDescription>Core</PackageDescription>

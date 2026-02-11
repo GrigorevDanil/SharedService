@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <PackageId>SharedService.SharedKernel</PackageId>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Authors>GrigorevDanil</Authors>
     <Company>GrigorevDanil</Company>
     <PackageDescription>SharedKernel</PackageDescription>
